@@ -1,5 +1,5 @@
 # CoffeePlatform
-   This project is based on Django Framework 1.11, using celery to send email and ali-pay SDK to achieve payment. Anymore, this install tutorial uses Python3.6 and pip tool, the choice of IDE is PyCharm. You should complete it first.
+   This project is based on Django Framework 1.11, using celery to send email and ali-pay SDK to achieve payment. Anymore, system runs on Windows 10, I took several ways to fixed the differences that Django sets up between Linux and Windows and got it run.
 
 ## INSTALL PROCESS
 
@@ -79,7 +79,21 @@ url(r'^tinymce/', include('tinymce.urls')),
 6. Redis setting--Redis is used to save session, celery message queue and some more cache.
 * You should first download redis win-3.2.100 via site below:
 >[redis](https://github.com/MicrosoftArchive/redis/releases)
+* Add redis path to system path.Set up cache and session's storage position in Django settings:
+```
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
 
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+```
 
 
 7. Celery setting
