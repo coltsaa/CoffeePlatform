@@ -1,28 +1,24 @@
 # CoffeePlatform
    This project is based on Django Framework 1.11, using celery to send email and ali-pay SDK to achieve payment. Anymore, this install tutorial uses Python3.6 and pip tool, the choice of IDE is PyCharm. You should complete it first.
 
-
 ## INSTALL PROCESS
 
-
 1. Basic environment setting:
-* install Python3.6 via website below:
-
->[Python 3.6](https://www.python.org/downloads/release/python-360/python-3.6.0-embed-amd64.zip)
-* install Django1.11, using:
+* This system is built with Python, So first of all, install Python3.6 via website below:
+>[Python 3.6.3](https://www.python.org/downloads/release/python-363/)
+* Install Django1.11.8, use command:
 ```
-pip3 install Django==1.11
+pip3 install Django==1.11.8
 ```
-* install PyCharm as develop tool. Via website below:
+* Install PyCharm as develop tool. Via website below:
 >[PyCharm](https://www.jetbrains.com/pycharm/)
 
 
-2. create your Django project named sakacafe, using terminal:
+2. Create your Django project named sakacafe, using terminal:
 ```
 django-admin.py startproject sakacafe
 ```
 * Or you could create the project using PyCharm directly.
-
 * Both virtual environment and real environment is ok.
 
 
@@ -50,12 +46,11 @@ DATABASES = {
 ```
 
 
-4. install requirements.txt, use command:
+4. This system install requirements.txt, use command:
 ```
 pip3 install -r requirements.txt
 ```
 * caution:Django Project is not worked in the virtual environment in my PC, so I used pipreqs to generate the requirements of current project. However, when I checked up the result, something goes wrong. Even I got it fixed but maybe some requirements is losted.It will be fixed when you use pip to install the third party library mentioned below.
-
 
 
 5. Set up tinymce in settings.py 
