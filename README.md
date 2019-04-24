@@ -27,14 +27,15 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')]
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 MEDIA_URL = '/media/'
 ```
-* You can choose your own language and area:
+* You can choose your background manage language and area:
 ```
 LANGUAGE_CODE = 'zh-hans'
 TIME_ZONE = 'Asia/Shanghai'
 ```
+* URLconf and templates could use the default setting.
 
-3. As a choice of database, MySQL plays an essential role. Then install MySQL5.7
-Download MySQL5.7.19 32bit/64bit skip-install version via website below：
+3. As a choice of database, MySQL plays an essential role.
+* Download MySQL5.7.19 32bit/64bit skip-install version via website below：
 > [MySQL5.7.19-32](https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-winx32.zip)
 
 > [MySQL5.7.19-64](https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-winx64.zip)
@@ -55,14 +56,14 @@ DATABASES = {
 ```
 
 
-4. This system needs some few third party Libraries' support. One way is to install requirements.txt that I exported, use command:
+4. System needs some few third party Libraries' support. One way is to install requirements.txt that I exported, use command:
 ```
 pip3 install -r requirements.txt
 ```
-* caution:Django Project is not worked in the virtual environment in my PC, so I used pipreqs to generate the requirements of current project. However, when I checked up the result, something goes wrong. Even I got it fixed but maybe some requirements is losted.It will be fixed when you use pip to install the third party library mentioned below.
+* Caution:Django Project is not worked in the virtual environment in my PC, so I used pipreqs to generate the requirements of current project. However, when I checked up the result, something goes wrong. Even I got it fixed but maybe some requirements is losted.It will be fixed when you use pip to install the third party library mentioned below.
 
 
-5. This system used a Rich Text Editor--tinymce to fill the content of goods' detail. Set up tinymce in settings.py:
+5. System used a Rich Text Editor--tinymce to fill the content of goods' detail. Set up tinymce in settings.py:
 ```
 TINYMCE_DEFAULT_CONFIG = {
     'theme': 'advanced',
@@ -75,7 +76,10 @@ TINYMCE_DEFAULT_CONFIG = {
 url(r'^tinymce/', include('tinymce.urls')), 
 ```
 
-6. Redis setting
+6. Redis setting--Redis is used to save session, celery message queue and some more cache.
+* You should first download redis win-3.2.100 via site below:
+>[redis](https://github.com/MicrosoftArchive/redis/releases)
+
 
 
 7. Celery setting
