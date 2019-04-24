@@ -5,7 +5,9 @@
 ## INSTALL PROCESS
 
 
-1. install Django1.11, using:
+1. Basic environment setting:
+
+* install Django1.11, using:
 ```
 pip3 install Django==1.11
 ```
