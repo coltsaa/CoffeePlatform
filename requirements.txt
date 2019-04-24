@@ -1,0 +1,9 @@
+django_redis==4.10.0
+itsdangerous==1.1.0
+python_alipay_sdk==1.8.0
+django_tinymce==2.7.0
+Django==1.11.8
+kombu==3.0.37
+alipay==0.7.4
+django_celery==3.2.2
+django_haystack==2.8.1
