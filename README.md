@@ -73,6 +73,12 @@ EMAIL_USE_TLS = True
 EMAIL_FROM = '坂cafe<xxxxxxxxxxx@163.com>'
 ```
 * Celery part
-* 
+* setting likes below:
+```
+import djcelery
+djcelery.setup_loader()
+BROKER_URL = 'redis://127.0.0.1:6379/1'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/2'
+```
 
 8. Haystack setting
