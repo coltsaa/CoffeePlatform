@@ -6,7 +6,9 @@
 
 
 1. Basic environment setting:
+* install Python3.6 via website below:
 
+>[Python 3.6](https://www.python.org/downloads/release/python-360/python-3.6.0-embed-amd64.zip)
 * install Django1.11, using:
 ```
 pip3 install Django==1.11
