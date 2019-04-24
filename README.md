@@ -60,7 +60,7 @@ DATABASES = {
 ```
 pip3 install -r requirements.txt
 ```
-* Caution:Django Project is not worked in the virtual environment in my PC, so I used pipreqs to generate the requirements of current project. However, when I checked up the result, something goes wrong. Even I got it fixed but maybe some requirements is losted.It will be fixed when you use pip to install the third party library mentioned below.
+* Caution:Django Project is not worked in the virtual environment in my PC, so I used pipreqs to generate the requirements of current project. However, when I checked up the result, something goes wrong. Even I got it fixed but maybe some requirements is losted.It will be fixed when you use pip to install the third party libraries mentioned below.
 
 
 5. System used a Rich Text Editor--tinymce to fill the content of goods' detail. Set up tinymce in settings.py:
@@ -96,7 +96,7 @@ SESSION_CACHE_ALIAS = "default"
 ```
 
 
-7. Celery setting
+7. Celery setting--usage:Distributed message queue management, placing time-consuming tasks into queue and work it in time division.
 
 * Before use celery to manage message queue sending emails, you should open the POP3/SMTP/IMAP service of your own email. After service opens and user granted password sets up, you should add email information in settings.py. Take 163 mail as a example:
 ```
