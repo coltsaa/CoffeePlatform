@@ -27,7 +27,24 @@ Download MySQL5.7.19 32bit/64bit skip-install version via website below：
 
 > [MySQL5.7.19-64](https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.19-winx64.zip)
 
-* After set up your database root account and password, 
+* After set up your database root account and password, create a database named 'sakacafe', connect it with Django project via settings.py. Just like:
+
+```
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST':'localhost',
+        'PORT':'3306',
+        'USER':'root',
+        'PASSWORD':'********',
+        # write down your password
+        'NAME': 'sakacafe',
+    }
+}
+```
 
 
-4. 
+4. install requirements.txt, use command:
+```
+pip3 install -r requirements.txt
+```
