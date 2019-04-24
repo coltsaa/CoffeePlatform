@@ -48,3 +48,4 @@ DATABASES = {
 ```
 pip3 install -r requirements.txt
 ```
+* caution:Django Project is not worked in the virtual environment in my PC, so I used pipreqs to generate the requirements of current project. However, when I checked up the result, something goes wrong. Even I got it fixed but maybe some requirements is losted.It will be fixed when you use pip to install the third party library mentioned below.
