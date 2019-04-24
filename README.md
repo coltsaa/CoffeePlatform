@@ -111,7 +111,7 @@ EMAIL_USE_TLS = True
 EMAIL_FROM = '坂cafe<xxxxxxxxxxx@163.com>'
 ```
 * Celery part
-* setting likes below:
+* Setting likes below:
 ```
 import djcelery
 djcelery.setup_loader()
