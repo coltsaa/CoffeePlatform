@@ -13,6 +13,8 @@
 ```
 pip3 install Django==1.11
 ```
+* install PyCharm as develop tool. Via website below:
+>[PyCharm](https://www.jetbrains.com/pycharm/)
 
 
 2. create your Django project named sakacafe, using terminal:
