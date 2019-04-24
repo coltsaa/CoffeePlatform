@@ -60,5 +60,19 @@ pip3 install -r requirements.txt
 
 7. Celery setting
 
+* Before use celery to manage message queue sending emails, you should open the POP3/SMTP/IMAP service of your own email. After service opens and user granted password sets up, you should add email information in settings.py. Take 163 mail as a example:
+```
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'xxxxxxxxxxx@163.com'
+# write down your email site
+EMAIL_HOST_PASSWORD = 'xxxxxxxx'
+# write down your password
+EMAIL_USE_TLS = True
+EMAIL_FROM = '坂cafe<xxxxxxxxxxx@163.com>'
+```
+* Celery part
+* 
 
 8. Haystack setting
