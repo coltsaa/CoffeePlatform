@@ -6,6 +6,7 @@
 1. Basic environment settings:
 * This system is built with Python, So first of all, install Python3.6 via website below:
 >[Python 3.6.3](https://www.python.org/downloads/release/python-363/)
+* Caution: If you only install Python3.6 in your PC, change all the "Python3" to "Python", "pip3" to "pip" in the command below.
 * Install Django1.11.8, use command:
 ```
 pip3 install Django==1.11.8
@@ -54,13 +55,14 @@ DATABASES = {
     }
 }
 ```
+* Or you could import my database backups directly using navicat for MySQL.
 
 
 4. System needs some few third party Libraries' support. One way is to install requirements.txt that I exported, use command:
 ```
 pip3 install -r requirements.txt
 ```
-* Caution:Django Project is not worked in the virtual environment in my PC, so I used pipreqs to generate the requirements of current project. However, when I checked up the result, something goes wrong. Even I got it fixed but maybe some requirements is losted.It will be fixed when you use pip to install the third party libraries mentioned below.
+* Caution: Django Project is not worked in the virtual environment in my PC, so I used pipreqs to generate the requirements of current project. However, when I checked up the result, something goes wrong. Even I got it fixed but maybe some requirements is losted.It will be fixed when you use pip to install the third party libraries mentioned below which do not worked.
 
 
 5. System used a Rich Text Editor--tinymce to fill the content of goods' detail. Set up tinymce in settings.py:
@@ -71,15 +73,25 @@ TINYMCE_DEFAULT_CONFIG = {
     'height': 400,
 }
 ```
+* Add tinymce to installed apps:
+```
+INSTALLED_APPS = (
+    ...
+    'tinymce',
+)
+```
 * Include tinymce via urls.py:
 ```
-url(r'^tinymce/', include('tinymce.urls')), 
+urlpatterns = [
+    ...
+    url(r'^tinymce/', include('tinymce.urls')), 
+]
 ```
 
 6. Redis setting--Redis is used to save session, celery message queue and some more cache.
 * You should first download redis win-3.2.100 via site below:
 >[redis](https://github.com/MicrosoftArchive/redis/releases)
-* Add redis path to system path.Set up cache and session's storage position in Django settings:
+* Add redis path to system path. Open redis-cli.exe. Set up cache and session's storage position in Django settings:
 ```
 CACHES = {
     "default": {
@@ -94,7 +106,10 @@ CACHES = {
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 ```
-
+* Add Middleware in settings.py:
+```
+'django.contrib.sessions.middleware.SessionMiddleware'
+```
 
 7. Celery setting--usage:Distributed message queue management, placing time-consuming tasks into queue and work it in time division.
 
@@ -118,5 +133,70 @@ djcelery.setup_loader()
 BROKER_URL = 'redis://127.0.0.1:6379/1'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/2'
 ```
+* More celery usage please read my design instructions.
 
-8. Haystack setting
+8. Haystack setting--usage:full text search, using whoosh as search engine and jieba for chinese word segmentation. Add it to installed apps:
+```
+INSTALLED_APPS = (
+    ...
+    'haystack',
+)
+```
+* Set up search engine:
+```
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    }
+}
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+```
+* Include haystack via urls.py:
+```
+urlpatterns = [
+    ...
+    url(r'^search/', include('haystack.urls')),
+]
+```
+* Copy my search_indexes.py, goodssku_text.txt, templates/search/search.html to corresponding position
+* Take my PC as example. Add ChineseAnalyzer.py to the path"E:\Program Files\Python36\Lib\site-packages\haystack\backends", coding:
+```
+import jieba
+from whoosh.analysis import Tokenizer, Token
+
+
+class ChineseTokenizer(Tokenizer):
+    def __call__(self, value, positions=False, chars=False,
+                 keeporiginal=False, removestops=True,
+                 start_pos=0, start_char=0, mode='', **kwargs):
+        t = Token(positions, chars, removestops=removestops, mode=mode,
+                  **kwargs)
+        seglist = jieba.cut(value, cut_all=True)
+        for w in seglist:
+            t.original = t.text = w
+            t.boost = 1.0
+            if positions:
+                t.pos = start_pos + value.find(w)
+            if chars:
+                t.startchar = start_char + value.find(w)
+                t.endchar = start_char + value.find(w) + len(w)
+            yield t
+
+def ChineseAnalyzer():
+    return ChineseTokenizer()
+```
+* Copy the whoosh_backend.py file and rename it whoosh_cn_backend.py
+* Caution: There will be a space at the end of the duplicated file name. Remember to delete the space. Code:
+```
+from .ChineseAnalyzer import ChineseAnalyzer 
+# find
+analyzer=StemmingAnalyzer()
+# alter
+analyzer=ChineseAnalyzer()
+```
+* Generate index and initialize index data in the terminal of current project:
+```
+python3 manage.py rebuild_index
+```
+* now you could use search bar in your template leading action to "/search/".
