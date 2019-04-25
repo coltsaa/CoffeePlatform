@@ -15,7 +15,7 @@ pip3 install Django==1.11.8
 >[PyCharm](https://www.jetbrains.com/pycharm/)
 
 
-2. Create your Django project named sakacafe, using terminal:
+2. Create your Django project named sakacafe, using command in current project's terminal:
 ```
 django-admin.py startproject sakacafe
 ```
@@ -34,6 +34,18 @@ LANGUAGE_CODE = 'zh-hans'
 TIME_ZONE = 'Asia/Shanghai'
 ```
 * URLconf and templates could use the default setting.
+* start your own apps using command:
+```
+python3 manage.py startapp app_name
+```
+* Create super administrator
+```
+python3 manage.py createsuperuser
+```
+* Use development server
+```
+python3 manage.py runserver
+```
 
 3. As a choice of database, MySQL plays an essential role.
 * Download MySQL5.7.19 32bit/64bit skip-install version via website below：
@@ -56,6 +68,14 @@ DATABASES = {
 }
 ```
 * Or you could import my database backups directly using navicat for MySQL.
+* Create changed files
+```
+python3 manage.py makemigrations
+```
+* Applying the generated py file to the database
+```
+python3 manage.py migrate
+```
 
 
 4. System needs some few third party Libraries' support. One way is to install requirements.txt that I exported, use command:
