@@ -240,7 +240,10 @@ class RegisterView(View):
         ...
         tasks.send_register_active_email.delay(email, username, token)
 ```
-
+* CAUTION!:BEFORE you start sending email to active account, you should start the worker in terminal of current project, using command:
+```
+python3 manage.py celery worker --loglevel=info
+```
 
 8. Haystack setting--usage:full text search, using whoosh as search engine and jieba for chinese word segmentation. Add it to installed apps:
 ```python
