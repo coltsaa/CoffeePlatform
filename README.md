@@ -337,8 +337,8 @@ ALIPAY_GATEWAY_URL = 'https://openapi.alipaydev.com/gateway.do?'
 * More exact payment operation please read order/views.py.
 
 
-10. More about user and login operation:
-* 'Cause I use and integrate AbstractUser class in django's built-in authentication system to create user information tables, you should set up in settings.py：
+10. About user and login operation:
+* 'Cause I use AbstractUser class in django's built-in authentication system to create user information tables and use LoginRequiredMixin to redirect to login page, you should set up in settings.py：
 ```python
 AUTH_USER_MODEL = 'user.User'
 LOGIN_URL = '/user/login'
