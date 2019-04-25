@@ -344,6 +344,8 @@ AUTH_USER_MODEL = 'user.User'
 LOGIN_URL = '/user/login'
 ```
 ## More
-To be honest, 'cause my bad memory and the project's huge settings, maybe something miss in my tutorial writing. Hope you could email me which I make mistakes.
+* To be honest, 'cause my bad memory and the project's huge settings, maybe something miss in my tutorial writing. Hope you could email me which I make mistakes.More code detail please read my Design Instructions.
 
-More code detail please read my Design Instructions.
+* If you feel this project helps, please star the project!
+
+**THX**
