@@ -4,7 +4,7 @@
 ## INSTALL PROCESS
 
 1. Basic environment settings:
-* This system is built with Python, So first of all, install Python3.6 via website below:
+* This system is built with Python, install Python3.6 via website below:
 >[Python 3.6.3](https://www.python.org/downloads/release/python-363/)
 * Caution: If you only install Python3.6 in your PC, change all the "Python3" to "Python", "pip3" to "pip" in the command below.
 * Install Django1.11.8, use command:
